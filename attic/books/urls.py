@@ -1,7 +1,7 @@
 """Натройка URL приложения books"""
 from django.urls import path
 
-from . import views
+from books import views
 
 app_name = 'books'
 

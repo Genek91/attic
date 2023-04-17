@@ -1,8 +1,14 @@
 """Обработчики URL запросов."""
-# from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render
+from books.models import Book
 
 
 def index(request):
     """Главная страница."""
-    return HttpResponse('Главная страница')
+    return render(
+        request,
+        'books/index.html',
+        {
+            'books': Book.objects.all()
+        }
+    )
