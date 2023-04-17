@@ -11,6 +11,7 @@ class Book(models.Model):
     class Meta:
         """Дефолтная сортировка модели Book."""
         ordering = ['-book_add_date']
+        verbose_name = 'Книги'
 
     name = models.TextField(
         verbose_name='Название книги',
