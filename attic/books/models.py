@@ -9,7 +9,7 @@ class Book(models.Model):
 
     class Meta:
         """Дефолтная сортировка модели Book."""
-        ordering = ['-pub_date']
+        ordering = ['-book_add_date']
 
     name = models.TextField(
         verbose_name='Название книги',
@@ -31,11 +31,13 @@ class Book(models.Model):
         verbose_name='Год издания',
         help_text='Год издания',
     )
-    #image = models.ImageField(
-    #    upload_to='books/',
-    #    blank=True,
-    #    verbose_name='Картинка',
-    #)
+    '''
+    image = models.ImageField(
+        upload_to='books/',
+        blank=True,
+        verbose_name='Картинка',
+    )
+    '''
     book_add_date = models.DateTimeField(
         auto_now_add=True,
         db_index=True,
