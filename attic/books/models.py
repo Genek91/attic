@@ -13,6 +13,10 @@ class Book(models.Model):
         ordering = ['-book_add_date']
         verbose_name = 'Книги'
 
+    genre = models.TextField(
+        verbose_name='Жанр книги',
+        help_text='Жанр книги',
+    )
     name = models.TextField(
         verbose_name='Название книги',
         help_text='Название книги',

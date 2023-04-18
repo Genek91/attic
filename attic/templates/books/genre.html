@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Жанры
+{% endblock %}
+
+{% block content %}
+{% for genre in genres %}
+<div>
+<h1>Жанры</h1>
+<ul>
+  <li><a href=""><h4>{{ genre.genre }}</h4></a></li>
+</ul>
+</div>
+{% endfor %}
+{% endblock %}

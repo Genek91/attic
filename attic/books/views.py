@@ -12,3 +12,14 @@ def index(request):
             'books': Book.objects.all()
         }
     )
+
+
+def genre(request, genre):
+    """Страница с жанрами."""
+    return render(
+        request,
+        'books/genre.html',
+        {
+            'genres': Book.objects.filter(genre=genre)
+        }
+    )
