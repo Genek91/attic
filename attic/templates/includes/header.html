@@ -2,7 +2,7 @@
 
 {% with request.resolver_match.view_name as view_name %} 
 
-<nav class="navbar navbar-light" style="background-color: lightskyblue">
+<nav class="navbar navbar-light" style="background-color: #87FACE">
   <div class="container">
     <div class="d-flex align-items-center">
       <a class="navbar-brand mr-auto" href="{% url 'books:index' %}">
@@ -16,29 +16,29 @@
       <span class="h1 ml-2 my-0">Аттик</span>
     </div>
     <ul class="nav nav-pills">
-      <li class="nav-item">
-        <a class="nav-link {% if view_name == 'books:index' %} active {% endif %}" href="{% url 'books:index' %}">О сайте</a>
-      </li>
       <li class="nav-item">              
-        <a class="nav-link {% if view_name == 'books:index' %} active {% endif %}" href="{% url 'books:index' %}">Каталог книг</a>
+        <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Каталог книг</h5></a>
       </li>
-      {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link {% if view_name == 'books:index' %} active {% endif %}" href="{% url 'books:index' %}">Авторы</a>
+          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Авторы</h5></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if view_name == 'books:index' %} active {% endif %}" href="{% url 'books:index' %}">Новые книги на сайте</a>
+          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Новые книги на сайте</h5></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if view_name == 'books:index' %} active {% endif %}" href="{% url 'books:index' %}">Выйти</a>
+          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>О сайте</h5></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Выйти</h5></a>
         </li>
         <li>Пользователь: </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link {% if view_name == 'books:index' %} active {% endif %}" href="{% url 'books:index' %}">Войти</a>
+          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}">Войти</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if view_name == 'books:index' %} active {% endif %}" href="{% url 'books:index' %}">Регистрация</a>
+          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}">Регистрация</a>
         </li>
       {% endif %}
     </ul>

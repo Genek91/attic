@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
+
 {% block title %}
-Последние обновления на сайте
+Каталог книг
 {% endblock %}
-<h1>Последние обновления на сайте</h1>
-{% for book in books %}
-    {{ books }}
-    {{ book.name }}
-    {{ book.text }}
-    {{ book.author }}
-    {{ book.pub_house }}
-{% endfor %}
+
+{% block content %}
+<h1>Каталог книг</h1>
+<ul>
+  <li><a href=""><h4>Воспитание детей</h4></a></li>
+  <li><a href=""><h4>Детективы</h4></a></li>
+  <li><a href=""><h4>Зарубежная литература</h4></a></li>
+  <li><a href=""><h4>История</h4></a></li>
+  <li><a href=""><h4>Книги для малышей</h4></a></li>
+  <li><a href=""><h4>Красота и здоровье</h4></a></li>
+  <li><a href=""><h4>Психология</h4></a></li>
+  <li><a href=""><h4>Рукоделие</h4></a></li>
+  <li><a href=""><h4>Саморазвитие</h4></a></li>
+  <li><a href=""><h4>Фентези</h4></a></li>
+  <li><a href=""><h4>Художественная литература</h4></a></li>
+  <li><a href=""><h4>Разное</h4></a></li>
+</ul>
+{% endblock %}
