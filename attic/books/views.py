@@ -1,6 +1,6 @@
 """Обработчики URL запросов."""
 from django.shortcuts import render
-from books.models import Book
+from books.models import Book, Genre
 
 
 def index(request):
@@ -11,15 +11,15 @@ def index(request):
     )
 
 
-def subgenre(request, genre):
+def subgenre(request, main_genre):
     """Страница с жанрами."""
-    print('>>>>>>>>>>>>', genre)
-    subgenre = Book.objects.filter(genre=genre)
-    print('>>>>>>>>>>>>', subgenre)
+    print('>>>>>>>>>>>>', main_genre)
+    genres = Genre.objects.filter(main_genre=main_genre)
+    print('>>>>>>>>>>>>', genres)
     return render(
         request,
         'books/genre_list.html',
         {
-            'subgenres': subgenre
+            'genres': genres
         }
     )

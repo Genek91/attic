@@ -8,5 +8,9 @@ class AboutSiteView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'О сайте'
-        context['text'] = 'Описание сайта'
+        context['text'] = (
+            'Сайт для тех кто любит читать. '
+            'Здесь собран большой выбор литературы. '
+            'На сайте можно оставить отзыв о прочитанной книги.'
+        )
         return context

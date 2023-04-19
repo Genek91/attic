@@ -5,6 +5,29 @@ from django.db import models
 User = get_user_model()
 
 
+class Genre(models.Model):
+    """Модель Genre для Attic."""
+
+    class Meta:
+        """Дефолтная названия модели Genre."""
+        ordering = ['main_genre']
+        verbose_name = 'Жанры'
+        verbose_name_plural = 'Жанры'
+
+    main_genre = models.TextField(
+        verbose_name='Жанр книги',
+        help_text='Жанр книги',
+    )
+    sub_genre = models.TextField(
+        verbose_name='Поджанр книги',
+        help_text='Поджанр книги',
+    )
+
+    def __str__(self):
+        """Вывод поля name."""
+        return self.main_genre
+
+
 class Book(models.Model):
     """Модель Book для Attic."""
 
@@ -14,13 +37,11 @@ class Book(models.Model):
         verbose_name = 'Книги'
         verbose_name_plural = 'Книги'
 
-    genre = models.TextField(
-        verbose_name='Жанр книги',
-        help_text='Жанр книги',
-    )
-    subgenre = models.TextField(
-        verbose_name='Поджанр книги',
-        help_text='Поджанр книги',
+    genre = models.ForeignKey(
+        Genre,
+        on_delete=models.CASCADE,
+        related_name='genres',
+        verbose_name='Жанр',
     )
     name = models.TextField(
         verbose_name='Название книги',
