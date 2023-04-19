@@ -12,10 +12,15 @@ class Book(models.Model):
         """Дефолтная сортировка модели Book."""
         ordering = ['-book_add_date']
         verbose_name = 'Книги'
+        verbose_name_plural = 'Книги'
 
     genre = models.TextField(
         verbose_name='Жанр книги',
         help_text='Жанр книги',
+    )
+    subgenre = models.TextField(
+        verbose_name='Поджанр книги',
+        help_text='Поджанр книги',
     )
     name = models.TextField(
         verbose_name='Название книги',
@@ -33,17 +38,15 @@ class Book(models.Model):
         verbose_name='Издательство',
         help_text='Издательство',
     )
-    pub_year = models.TextField(
+    pub_year = models.DateTimeField(
         verbose_name='Год издания',
         help_text='Год издания',
     )
-    '''
     image = models.ImageField(
         upload_to='books/',
         blank=True,
         verbose_name='Картинка',
     )
-    '''
     book_add_date = models.DateTimeField(
         auto_now_add=True,
         db_index=True,

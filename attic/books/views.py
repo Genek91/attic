@@ -7,19 +7,19 @@ def index(request):
     """Главная страница."""
     return render(
         request,
-        'books/index.html',
-        {
-            'books': Book.objects.all()
-        }
+        'books/index.html'
     )
 
 
-def genre(request, genre):
+def subgenre(request, genre):
     """Страница с жанрами."""
+    print('>>>>>>>>>>>>', genre)
+    subgenre = Book.objects.filter(genre=genre)
+    print('>>>>>>>>>>>>', subgenre)
     return render(
         request,
-        'books/genre.html',
+        'books/genre_list.html',
         {
-            'genres': Book.objects.filter(genre=genre)
+            'subgenres': subgenre
         }
     )
