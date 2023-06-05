@@ -9,7 +9,7 @@ class Genre(models.Model):
     """Модель Genre для Attic."""
 
     class Meta:
-        """Дефолтная названия модели Genre."""
+        """Дефолтная сортировка модели Genre."""
         ordering = ['main_genre']
         verbose_name = 'Жанры'
         verbose_name_plural = 'Жанры'

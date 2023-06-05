@@ -32,15 +32,41 @@
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Выйти</h5></a>
+          <a class="nav-link link-light
+             {% if view_name  == 'users:password_change' %}
+               active
+             {% endif %}"
+             href="{% url 'users:password_change' %}">Изменить пароль
+          </a>
         </li>
-        <li>Пользователь: </li>
-      {% else %}
         <li class="nav-item">
-          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}">Войти</a>
+          <a class="nav-link link-light
+             {% if view_name  == 'users:logout' %}
+               active
+             {% endif %}"
+             href="{% url 'users:logout' %}">Выйти
+          </a>
+        </li>
+        <li>
+        <li>
+          Пользователь: {{ user.username }}
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link link-light
+             {% if view_name  == 'users:login' %}
+               active
+             {% endif %}"
+             href="{% url 'users:login' %}">Войти
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}">Регистрация</a>
+          <a class="nav-link link-light
+             {% if view_name  == 'users:signup' %}
+               active
+             {% endif %}"
+             href="{% url 'users:signup' %}">Регистрация
+          </a>
         </li>
       {% endif %}
     </ul>
