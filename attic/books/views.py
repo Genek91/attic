@@ -12,11 +12,11 @@ def index(request):
 
 
 def subgenre(request, main_genre):
-    """Страница с жанрами."""
+    """Страница с поджанрами."""
     genres = Genre.objects.filter(main_genre=main_genre)
     return render(
         request,
-        'books/genre_list.html',
+        'books/sub_genre.html',
         {
             'genres': genres
         }

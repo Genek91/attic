@@ -25,7 +25,7 @@ class Genre(models.Model):
 
     def __str__(self):
         """Вывод поля name."""
-        return self.main_genre
+        return self.sub_genre
 
 
 class Book(models.Model):

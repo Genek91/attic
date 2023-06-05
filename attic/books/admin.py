@@ -3,12 +3,12 @@ from django.contrib import admin
 from books.models import Book, Genre
 
 
-class PostAdmin(admin.ModelAdmin):
-    """Основной класс для админки."""
+class BookAdmin(admin.ModelAdmin):
+    """Основной класс для админки модели Book."""
 
     list_display = (
         'pk',
-        'genre'
+        'genre',
         'name',
         'text',
         'author',
@@ -20,6 +20,21 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('book_add_date',)
     empty_value_display = '-пусто-'
 
+    def show_genre(self, obj):
+        result = Genre.objects.filter(sub_genre=obj)
+        return result['genre']
 
-admin.site.register(Book)
-admin.site.register(Genre)
+
+class GenreAdmin(admin.ModelAdmin):
+    """Основной класс для админки модели Genre."""
+
+    list_display = (
+        'main_genre',
+        'sub_genre',
+    )
+    search_fields = ('sub_genre',)
+    list_filter = ('main_genre',)
+
+
+admin.site.register(Book, BookAdmin)
+admin.site.register(Genre, GenreAdmin)
