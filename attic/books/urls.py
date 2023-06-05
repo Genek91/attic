@@ -7,5 +7,6 @@ app_name = 'books'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('genre/<str:main_genre>/', views.subgenre, name='main_genre'),
+    path('genre/<int:id_genre>/', views.subgenre, name='id_genre'),
+    path('subgenre/<int:id_subgenre>/', views.books, name='books'),
 ]

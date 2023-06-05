@@ -6,10 +6,20 @@
 
 {% block content %}
 <div>
-<h1>Поджанры</h1>
-{% for genre in genres %}
+    <h1>
+        Поджанры
+    </h1>
+</div>
+{% for sub_genre in sub_genres %}
+<div>
 <ul>
-    <li><a href="{% url 'books:main_genre' genre.sub_genre %}"><h4>{{ genre.sub_genre }}</h4></a></li>
+    <li>
+        <a href="{% url 'books:books' sub_genre.id %}">
+            <h4>
+                {{ sub_genre }}
+            </h4>
+        </a>
+    </li>
 </ul>
 </div>
 {% endfor %}

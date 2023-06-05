@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from books.models import Book, Genre
+from books.models import Book, Genre, SubGenre
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -8,7 +8,7 @@ class BookAdmin(admin.ModelAdmin):
 
     list_display = (
         'pk',
-        'genre',
+        'sub_genre',
         'name',
         'text',
         'author',
@@ -20,21 +20,27 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = ('book_add_date',)
     empty_value_display = '-пусто-'
 
-    def show_genre(self, obj):
-        result = Genre.objects.filter(sub_genre=obj)
-        return result['genre']
-
 
 class GenreAdmin(admin.ModelAdmin):
     """Основной класс для админки модели Genre."""
 
     list_display = (
-        'main_genre',
-        'sub_genre',
+        'name',
     )
-    search_fields = ('sub_genre',)
-    list_filter = ('main_genre',)
+    search_fields = ('name',)
+    list_filter = ('name',)
+
+
+class SubGenreAdmin(admin.ModelAdmin):
+    """Основной класс для админки модели Genre."""
+
+    list_display = (
+        'name',
+    )
+    search_fields = ('name',)
+    list_filter = ('name',)
 
 
 admin.site.register(Book, BookAdmin)
 admin.site.register(Genre, GenreAdmin)
+admin.site.register(SubGenre, SubGenreAdmin)

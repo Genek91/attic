@@ -6,19 +6,21 @@
 
 {% block content %}
 <div>
-<h1>Каталог книг</h1>
+    <h1>
+        Каталог книг
+    </h1>
+</div>
+{% for genre in genres %}
+<div>
 <ul>
-  <li><a href="{% url 'books:main_genre' 'detectives' %}"><h4>Детективы</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'childrens_literature' %}"><h4>Детская литература</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'story' %}"><h4>История</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'beauty_and_health' %}"><h4>Красота и здоровье</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'science' %}"><h4>Наука</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'psychology' %}"><h4>Психология</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'needlework' %}"><h4>Рукоделие</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'self_development' %}"><h4>Саморазвитие</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'fantastic' %}"><h4>Фантастика</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'fiction' %}"><h4>Художественная литература</h4></a></li>
-  <li><a href="{% url 'books:main_genre' 'miscellanea' %}"><h4>Разное</h4></a></li>
+    <li>
+        <a href="{% url 'books:id_genre' genre.id %}">
+            <h4>
+                {{ genre }}
+            </h4>
+        </a>
+    </li>
 </ul>
 </div>
+{% endfor %}
 {% endblock %}
