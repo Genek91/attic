@@ -27,13 +27,24 @@ def subgenre(request, id_genre):
     )
 
 
-def books(request, id_subgenre):
-    """Страница с книгами."""
+def books_list(request, id_subgenre):
+    """Страница со списком книг."""
     books = Book.objects.filter(sub_genre=id_subgenre)
     return render(
         request,
-        'books/books.html',
+        'books/books_list.html',
         {
             'books': books
+        }
+    )
+
+
+def book(request, id_book):
+    book = Book.objects.get(id=id_book)
+    return render(
+        request,
+        'books/book.html',
+        {
+            'book': book
         }
     )

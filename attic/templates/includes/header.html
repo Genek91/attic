@@ -19,20 +19,20 @@
     </div>
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Каталог книг</h5></a>
+        <a class="nav-link link-dark {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Каталог книг</h5></a>
       </li>
         <li class="nav-item">
-          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Авторы</h5></a>
+          <a class="nav-link link-dark {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Авторы</h5></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Новые книги на сайте</h5></a>
+          <a class="nav-link link-dark {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Новые книги на сайте</h5></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if view_name == 'about:site' %} active {% endif %}" href="{% url 'about:site' %}"><h5>О сайте</h5></a>
+          <a class="nav-link link-dark {% if view_name == 'about:site' %} active {% endif %}" href="{% url 'about:site' %}"><h5>О сайте</h5></a>
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link link-light
+          <a class="nav-link link-dark
              {% if view_name  == 'users:password_change' %}
                active
              {% endif %}"
@@ -40,14 +40,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-light
+          <a class="nav-link link-dark
              {% if view_name  == 'users:logout' %}
                active
              {% endif %}"
              href="{% url 'users:logout' %}">Выйти
           </a>
         </li>
-        <li>
         <li>
           Пользователь: {{ user.username }}
         </li>

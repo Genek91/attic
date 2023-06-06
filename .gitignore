@@ -139,3 +139,5 @@ dmypy.json
 
 .vscode/
 *.code-workspace
+
+media

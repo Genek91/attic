@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'books.apps.BooksConfig',
     'core.apps.CoreConfig',
+    'sorl.thumbnail',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -96,3 +97,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'books:index'
+
+# Папка для сохранения картинок
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

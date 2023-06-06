@@ -16,7 +16,7 @@ class BookAdmin(admin.ModelAdmin):
         'pub_year',
         'book_add_date',
     )
-    search_fields = ('text',)
+    search_fields = ('name',)
     list_filter = ('book_add_date',)
     empty_value_display = '-пусто-'
 

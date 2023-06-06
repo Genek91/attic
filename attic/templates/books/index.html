@@ -10,17 +10,19 @@
         Каталог книг
     </h1>
 </div>
-{% for genre in genres %}
-<div>
-<ul>
-    <li>
-        <a href="{% url 'books:id_genre' genre.id %}">
-            <h4>
-                {{ genre }}
-            </h4>
-        </a>
-    </li>
-</ul>
+<div style="column-count: 3; column-gap: 20px; margin-bottom: 20px;">
+    {% for genre in genres %}
+    <div>
+        <ul>
+            <li>
+                <a href="{% url 'books:id_genre' genre.id %}">
+                    <h4>
+                        {{ genre }}
+                    </h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}
