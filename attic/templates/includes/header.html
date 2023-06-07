@@ -22,7 +22,7 @@
         <a class="nav-link link-dark {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Каталог книг</h5></a>
       </li>
         <li class="nav-item">
-          <a class="nav-link link-dark {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Авторы</h5></a>
+          <a class="nav-link link-dark {% if view_name == 'books:authors' %} active {% endif %}" href="{% url 'books:authors' %}"><h5>Авторы</h5></a>
         </li>
         <li class="nav-item">
           <a class="nav-link link-dark {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Новые книги на сайте</h5></a>

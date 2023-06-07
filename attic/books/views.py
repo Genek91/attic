@@ -48,3 +48,10 @@ def book(request, id_book):
             'book': book
         }
     )
+
+
+def authors(request):
+    return render(
+        request,
+        'books/authors.html',
+    )
