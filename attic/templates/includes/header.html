@@ -1,6 +1,11 @@
 {% load static %}
 
 {% with request.resolver_match.view_name as view_name %} 
+<style>
+  .nav-link.active {
+    background-color: white !important;
+  }
+</style>
 
 <nav class="navbar navbar-light" style="background-color: #87FACE">
   <div class="container">
@@ -19,16 +24,16 @@
     </div>
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link link-dark {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Каталог книг</h5></a>
+        <a class="nav-link link-dark {% if view_name == 'books:index' %} active {% endif %} active-white" href="{% url 'books:index' %}"><h5>Каталог книг</h5></a>
       </li>
         <li class="nav-item">
-          <a class="nav-link link-dark {% if view_name == 'books:authors' %} active {% endif %}" href="{% url 'books:authors' %}"><h5>Авторы</h5></a>
+          <a class="nav-link link-dark {% if view_name == 'books:authors' %} active {% endif %} active-white" href="{% url 'books:authors' %}"><h5>Авторы</h5></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-dark {% if view_name == '' %} active {% endif %}" href="{% url 'books:index' %}"><h5>Новые книги на сайте</h5></a>
+          <a class="nav-link link-dark {% if view_name == '' %} active {% endif %} active-white" href="{% url 'books:index' %}"><h5>Новые книги на сайте</h5></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-dark {% if view_name == 'about:site' %} active {% endif %}" href="{% url 'about:site' %}"><h5>О сайте</h5></a>
+          <a class="nav-link link-dark {% if view_name == 'about:site' %} active {% endif %} active-white" href="{% url 'about:site' %}"><h5>О сайте</h5></a>
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">

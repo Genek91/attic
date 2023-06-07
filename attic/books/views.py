@@ -51,7 +51,11 @@ def book(request, id_book):
 
 
 def authors(request):
+    authors = Book.objects.values('author')
     return render(
         request,
         'books/authors.html',
+        {
+            'authors': authors
+        }
     )
