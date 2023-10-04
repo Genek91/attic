@@ -26,4 +26,4 @@ python manage.py runserver
 
 ### Автор
 
-Евгений
+[Евгений](https://github.com/Genek91)
