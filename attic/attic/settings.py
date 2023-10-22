@@ -33,7 +33,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'atticus.urls'
+ROOT_URLCONF = 'attic.urls'
 
 TEMPLATES_DIR = BASE_DIR / 'templates'
 
@@ -53,7 +53,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'atticus.wsgi.application'
+WSGI_APPLICATION = 'attic.wsgi.application'
 
 DATABASES = {
     'default': {
