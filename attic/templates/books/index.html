@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Каталог книг
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1>
+        Каталог книг
+    </h1>
+</div>
+<div style="column-count: 3; column-gap: 20px; margin-bottom: 20px;">
+    {% for genre in genres %}
+    <div>
+        <ul>
+            <li>
+                <a href="{% url 'books:subgenre' genre.id %}">
+                    <h4>
+                        {{ genre }}
+                    </h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block title %}
+Книги
+{% endblock %}
+
+{% block content %}
+<style>
+    .book-details {
+        display: flex;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+
+    .book-info {
+        margin-left: 20px;
+    }
+
+    .book-description {
+        margin-top: 20px;
+    }
+
+    .book-image {
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .book-title {
+        font-size: 24px;
+        margin-top: 0;
+    }
+
+    .book-info p {
+        margin-top: 10px;
+    }
+
+    .book-info strong {
+        font-weight: bold;
+    }
+
+    .book-description p {
+        margin: 0;
+        overflow-wrap: break-word;
+    }
+    
+    .book-details-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .book-image-container {
+        flex: 1;
+    }
+
+    .book-text-container {
+        flex: 4;
+        margin-left: 30px;
+    }
+
+    .book-description-container {
+        flex: 2;
+        margin-left: 50px;
+        max-width: 400px;
+    }
+</style>
+
+<div class="book-details">
+    <div class="book-details-container">
+        <div class="book-image-container">
+            {% thumbnail book.image "2000x2000" crop="center" upscale=False as im %}
+                <img class="book-image" src="{{ im.url }}" alt="{{ book.name }}">
+            {% endthumbnail %}
+        </div>
+        <div class="book-text-container">
+            <h5 class="book-title">{{ book.name }}</h5>
+            <div class="book-info">
+                <p><strong>Автор:</strong> {{ book.author }}</p>
+                <p><strong>Жанр:</strong> {{ book.sub_genre.genre.name }}</p>
+                <p><strong>Поджанр:</strong> {{ book.sub_genre.name }}</p>
+                <p><strong>Год издания:</strong> {{ book.pub_year|date:"d E Y" }}</p>
+                <p><strong>Издательство:</strong> {{ book.pub_house }}</p>
+                <p><strong>ID книги:</strong> {{ book.id }}</p>
+            </div>
+        </div>
+        <div class="book-description-container">
+            <div class="book-info">
+                <p><strong>Описание книги:</strong></p>
+                <p style="max-width: 100%;">{{ book.text }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

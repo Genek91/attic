@@ -1,26 +1,30 @@
-from pathlib import Path
+import os
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'django-insecure-j4gf%=4cha44ozm5w7h&p-&(oicl1*u6qq0&&!@*gcj@mk3y)^'
+SECRET_KEY = '3q%o*p0xcu_2jha0ml*$+o(dh69y%e^2cbt83xh+nf2w@^p7d$'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
+    'testserver',
+]
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
+    'about.apps.AboutConfig',
+    'books.apps.BooksConfig',
+    'core.apps.CoreConfig',
+    'sorl.thumbnail',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'djoser',
-    'api',
-    'users',
-    'books',
 ]
 
 MIDDLEWARE = [
@@ -34,8 +38,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'attic.urls'
-
-TEMPLATES_DIR = BASE_DIR / 'templates'
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 TEMPLATES = [
     {
@@ -58,7 +61,7 @@ WSGI_APPLICATION = 'attic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -77,20 +80,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Переадресация пользователей
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-}
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'books:index'
+
+# Папка для сохранения картинок
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

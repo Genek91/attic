@@ -1,0 +1,79 @@
+{% load static %}
+
+{% with request.resolver_match.view_name as view_name %} 
+<style>
+  .nav-link.active {
+    background-color: white !important;
+  }
+</style>
+
+<nav class="navbar navbar-light" style="background-color: #87FACE">
+  <div class="container">
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand mr-auto" href="{% url 'books:index' %}">
+        <img
+          src="{% static 'img/logo.png' %}"
+          width="90" height="90"
+          class="d-inline-block align-top"
+          alt=""
+        >
+      </a>
+      <a class="navbar-brand mr-auto" href="{% url 'books:index' %}">
+      <span class="h1 ml-2 my-0">Аттик</span>
+      </a>
+    </div>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link link-dark {% if view_name == 'books:index' %} active {% endif %} active-white" href="{% url 'books:index' %}"><h5>Каталог книг</h5></a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link link-dark {% if view_name == 'books:authors' %} active {% endif %} active-white" href="{% url 'books:authors' %}"><h5>Авторы</h5></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-dark {% if view_name == '' %} active {% endif %} active-white" href="{% url 'books:index' %}"><h5>Новые книги на сайте</h5></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-dark {% if view_name == 'about:site' %} active {% endif %} active-white" href="{% url 'about:site' %}"><h5>О сайте</h5></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link link-dark
+             {% if view_name  == 'users:password_change' %}
+               active
+             {% endif %}"
+             href="{% url 'users:password_change' %}">Изменить пароль
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-dark
+             {% if view_name  == 'users:logout' %}
+               active
+             {% endif %}"
+             href="{% url 'users:logout' %}">Выйти
+          </a>
+        </li>
+        <li>
+          Пользователь: {{ user.username }}
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link link-light
+             {% if view_name  == 'users:login' %}
+               active
+             {% endif %}"
+             href="{% url 'users:login' %}">Войти
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-light
+             {% if view_name  == 'users:signup' %}
+               active
+             {% endif %}"
+             href="{% url 'users:signup' %}">Регистрация
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>      
+{% endwith %}
