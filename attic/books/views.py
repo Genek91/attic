@@ -101,8 +101,7 @@ def update_book(request, id_book):
 
 
 def authors(request):
-    authors = Book.objects.values('author')
-    print(authors)
+    authors = sorted(list(set(Book.objects.values_list('author', flat=True))))
     return render(
         request,
         'books/authors.html',
