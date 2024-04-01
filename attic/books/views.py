@@ -39,6 +39,17 @@ def books_list(request, id_subgenre):
     )
 
 
+def new_books_list(request):
+    books = Book.objects.all()[:10]
+    return render(
+        request,
+        'books/books_list.html',
+        {
+            'books': books
+        }
+    )
+
+
 def book(request, id_book):
     book = Book.objects.get(id=id_book)
     return render(
