@@ -23,28 +23,49 @@
       </a>
     </div>
     <ul class="nav nav-pills">
+      <a class="nav-link link-dark
+      {% if view_name == 'books:create_book' %}
+        active
+      {% endif %} active-white" href="{% url 'books:create_book' %}"><h5>Добавить книгу</h5>
+      </a>
       <li class="nav-item">
-        <a class="nav-link link-dark {% if view_name == 'books:index' %} active {% endif %} active-white" href="{% url 'books:index' %}"><h5>Каталог книг</h5></a>
+        <a class="nav-link link-dark 
+          {% if view_name == 'books:index' %}
+            active
+          {% endif %} active-white" href="{% url 'books:index' %}"><h5>Каталог книг</h5>
+        </a>
       </li>
         <li class="nav-item">
-          <a class="nav-link link-dark {% if view_name == 'books:authors' %} active {% endif %} active-white" href="{% url 'books:authors' %}"><h5>Авторы</h5></a>
+          <a class="nav-link link-dark
+            {% if view_name == 'books:authors' %}
+              active
+            {% endif %} active-white" href="{% url 'books:authors' %}"><h5>Авторы</h5>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-dark {% if view_name == 'books:new_books_list' %} active {% endif %} active-white" href="{% url 'books:new_books_list' %}"><h5>Новые книги на сайте</h5></a>
+          <a class="nav-link link-dark
+            {% if view_name == 'books:new_books_list' %}
+              active
+            {% endif %} active-white" href="{% url 'books:new_books_list' %}"><h5>Новые книги на сайте</h5>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-dark {% if view_name == 'about:site' %} active {% endif %} active-white" href="{% url 'about:site' %}"><h5>О сайте</h5></a>
+          <a class="nav-link link-dark
+            {% if view_name == 'about:site' %}
+              active
+            {% endif %} active-white" href="{% url 'about:site' %}"><h5>О сайте</h5>
+          </a>
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
+          Пользователь: {{ user.username }}
           <a class="nav-link link-dark
              {% if view_name  == 'users:password_change' %}
                active
              {% endif %}"
              href="{% url 'users:password_change' %}">Изменить пароль
           </a>
-        </li>
-        <li class="nav-item">
+
           <a class="nav-link link-dark
              {% if view_name  == 'users:logout' %}
                active
@@ -52,12 +73,9 @@
              href="{% url 'users:logout' %}">Выйти
           </a>
         </li>
-        <li>
-          Пользователь: {{ user.username }}
-        </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link link-light
+          <a class="nav-link link-dark
              {% if view_name  == 'users:login' %}
                active
              {% endif %}"
@@ -65,7 +83,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-light
+          <a class="nav-link link-dark
              {% if view_name  == 'users:signup' %}
                active
              {% endif %}"

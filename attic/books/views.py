@@ -1,5 +1,9 @@
 """Обработчики URL запросов."""
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+
+from users.views import authorized_only
+from books.forms import BookForm
 from books.models import Book, Genre, SubGenre
 
 
@@ -59,6 +63,19 @@ def book(request, id_book):
             'book': book
         }
     )
+
+
+@authorized_only
+def create_book(request):
+    form = BookForm(
+        request.POST or None,
+        files=request.FILES or None,
+    )
+    if request.method == 'POST' and form.is_valid():
+        post = form.save(commit=False)
+        post.save()
+        return redirect(reverse('books:index'))
+    return render(request, 'books/create_book.html', {'form': form})
 
 
 def authors(request):
