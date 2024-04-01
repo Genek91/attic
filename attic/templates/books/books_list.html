@@ -61,6 +61,7 @@
         <div class="grid-container">
             {% for book in books %}
             <div class="grid-item">
+                
                 <div class="card mb-4">
                     {% if book.image %}
                         {% thumbnail book.image "2000x2000" crop="center" upscale=False as im %}
@@ -74,13 +75,16 @@
                         </div>
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">{{ book.name }}</h5>
+                        <a href="{% url 'books:book' book.id %}">
+                            <h5 class="card-title">{{ book.name }}</h5>
+                        </a>
                         <p class="card-text">Автор: {{ book.author }}</p>
                     </div>
                     <div class="card-footer">
                         <p class="card-text">ID книги: {{ book.id }}</p>
                     </div>
                 </div>
+                
             </div>
             {% endfor %}
         </div>

@@ -90,6 +90,9 @@
             <div class="book-info">
                 <p><strong>Описание книги:</strong></p>
                 <p style="max-width: 100%;">{{ book.text }}</p>
+                <a class="btn btn-primary" href="{% url 'books:update_book' book.id %}">
+                    Редактировать
+                </a>
             </div>
         </div>
     </div>
