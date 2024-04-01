@@ -102,3 +102,7 @@ LOGIN_REDIRECT_URL = 'books:index'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Кастомные страницы ошибок
+
+CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
