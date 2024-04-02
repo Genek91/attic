@@ -11,13 +11,13 @@
     </h1>
 </div>
 <div style="column-count: 3; column-gap: 20px; margin-bottom: 20px;">
-    {% for sub_genre in sub_genres %}
+    {% for subgenre in subgenres %}
     <div>
         <ul>
             <li>
-                <a href="{% url 'books:books_list' sub_genre.id %}">
+                <a href="{% url 'books:books_list' subgenre.id %}">
                     <h4>
-                        {{ sub_genre }}
+                        {{ subgenre }}
                     </h4>
                 </a>
             </li>

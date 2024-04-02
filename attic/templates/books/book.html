@@ -79,8 +79,8 @@
             <h5 class="book-title">{{ book.name }}</h5>
             <div class="book-info">
                 <p><strong>Автор:</strong> {{ book.author }}</p>
-                <p><strong>Жанр:</strong> {{ book.sub_genre.genre.name }}</p>
-                <p><strong>Поджанр:</strong> {{ book.sub_genre.name }}</p>
+                <p><strong>Жанр:</strong> {{ book.subgenre.genre.name }}</p>
+                <p><strong>Поджанр:</strong> {{ book.subgenre.name }}</p>
                 <p><strong>Год издания:</strong> {{ book.pub_year|date:"d E Y" }}</p>
                 <p><strong>Издательство:</strong> {{ book.pub_house }}</p>
                 <p><strong>ID книги:</strong> {{ book.id }}</p>

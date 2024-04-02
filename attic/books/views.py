@@ -1,5 +1,8 @@
 """Обработчики URL запросов."""
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import (get_object_or_404,
+                              render,
+                              redirect,
+                              get_list_or_404)
 from django.urls import reverse
 
 from users.views import authorized_only
@@ -9,7 +12,7 @@ from books.models import Book, Genre, SubGenre
 
 def index(request):
     """Главная страница."""
-    genres = Genre.objects.all()
+    genres = get_list_or_404(Genre)
     return render(
         request,
         'books/index.html',
@@ -21,19 +24,19 @@ def index(request):
 
 def subgenre(request, id_genre):
     """Страница с поджанрами."""
-    sub_genres = SubGenre.objects.filter(genre=id_genre)
+    subgenres = get_list_or_404(SubGenre, genre=id_genre)
     return render(
         request,
-        'books/sub_genre.html',
+        'books/subgenre.html',
         {
-            'sub_genres': sub_genres
+            'subgenres': subgenres
         }
     )
 
 
 def books_list(request, id_subgenre):
     """Страница со списком книг."""
-    books = Book.objects.filter(sub_genre=id_subgenre)
+    books = get_list_or_404(Book, subgenre=id_subgenre)
     return render(
         request,
         'books/books_list.html',
@@ -43,8 +46,19 @@ def books_list(request, id_subgenre):
     )
 
 
+def author_books_list(request, author):
+    author_books = get_list_or_404(Book, author=author)
+    return render(
+        request,
+        'books/books_list.html',
+        {
+            'books': author_books
+        }
+    )
+
+
 def new_books_list(request):
-    books = Book.objects.all()[:10]
+    books = get_list_or_404(Book)[:10]
     return render(
         request,
         'books/books_list.html',
@@ -55,7 +69,7 @@ def new_books_list(request):
 
 
 def book(request, id_book):
-    book = Book.objects.get(id=id_book)
+    book = get_object_or_404(Book, id=id_book)
     return render(
         request,
         'books/book.html',

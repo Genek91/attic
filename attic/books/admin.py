@@ -8,7 +8,7 @@ class BookAdmin(admin.ModelAdmin):
 
     list_display = (
         'pk',
-        'sub_genre',
+        'subgenre',
         'name',
         'text',
         'author',

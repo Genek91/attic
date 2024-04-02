@@ -14,4 +14,9 @@ urlpatterns = [
     path('create-book/', views.create_book, name='create_book'),
     path('update-book/<int:id_book>', views.update_book, name='update_book'),
     path('authors/', views.authors, name='authors'),
+    path(
+        'author-books-list/<str:author>',
+        views.author_books_list,
+        name='author_books_list'
+    ),
 ]

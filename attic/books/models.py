@@ -1,6 +1,7 @@
 """Натройка моделей приложения books."""
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 User = get_user_model()
 
@@ -20,7 +21,7 @@ class Genre(models.Model):
     )
 
     def __str__(self):
-        """Вывод поля main_genre."""
+        """Вывод поля genre."""
         return self.name
 
 
@@ -40,12 +41,12 @@ class SubGenre(models.Model):
     genre = models.ForeignKey(
         Genre,
         on_delete=models.CASCADE,
-        related_name='sub_genres',
+        related_name='subgenres',
         verbose_name='Жанр',
     )
 
     def __str__(self):
-        """Вывод поля sub_genre."""
+        """Вывод поля subgenre."""
         return self.name
 
 
@@ -58,7 +59,7 @@ class Book(models.Model):
         verbose_name = 'Книги'
         verbose_name_plural = 'Книги'
 
-    sub_genre = models.ForeignKey(
+    subgenre = models.ForeignKey(
         SubGenre,
         on_delete=models.CASCADE,
         related_name='books',
@@ -80,9 +81,13 @@ class Book(models.Model):
         verbose_name='Издательство',
         help_text='Издательство',
     )
-    pub_year = models.DateTimeField(
+    pub_year = models.PositiveIntegerField(
         verbose_name='Год издания',
         help_text='Год издания',
+        validators=[
+            MaxValueValidator(3000),
+            MinValueValidator(1000)
+        ],
     )
     image = models.ImageField(
         upload_to='books/',

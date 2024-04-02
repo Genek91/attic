@@ -23,11 +23,13 @@
       </a>
     </div>
     <ul class="nav nav-pills">
-      <a class="nav-link link-dark
-      {% if view_name == 'books:create_book' %}
-        active
-      {% endif %} active-white" href="{% url 'books:create_book' %}"><h5>Добавить книгу</h5>
-      </a>
+      <li class="nav-item">
+        <a class="nav-link link-dark
+          {% if view_name == 'books:create_book' %}
+            active
+          {% endif %} active-white" href="{% url 'books:create_book' %}"><h5>Добавить книгу</h5>
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link link-dark 
           {% if view_name == 'books:index' %}
