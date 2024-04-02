@@ -1,13 +1,11 @@
 """Обработчики URL запросов."""
-from django.shortcuts import (get_object_or_404,
-                              render,
-                              redirect,
-                              get_list_or_404)
+from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
+                              render)
 from django.urls import reverse
 
-from users.views import authorized_only
 from books.forms import BookForm
 from books.models import Book, Genre, SubGenre
+from users.views import authorized_only
 
 
 def index(request):
