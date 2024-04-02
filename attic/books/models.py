@@ -1,6 +1,6 @@
 """Натройка моделей приложения books."""
 from django.contrib.auth import get_user_model
-from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 User = get_user_model()
@@ -85,8 +85,8 @@ class Book(models.Model):
         verbose_name='Год издания',
         help_text='Год издания',
         validators=[
-            MinLengthValidator(4),
-            MaxLengthValidator(4),
+            MinValueValidator(1000),
+            MaxValueValidator(3000),
         ],
     )
     image = models.ImageField(
@@ -103,3 +103,28 @@ class Book(models.Model):
     def __str__(self):
         """Вывод поля name."""
         return self.name
+
+
+class Comment(models.Model):
+    """Модель Comment для Attic."""
+
+    class Meta:
+        """Дефолтная сортировка модели Comment."""
+        ordering = ['-created']
+
+    book = models.ForeignKey(
+        Book,
+        on_delete=models.CASCADE,
+        related_name='comments',
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='comments',
+    )
+    text = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        """Вывод поля text."""
+        return self.text

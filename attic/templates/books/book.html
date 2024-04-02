@@ -81,7 +81,7 @@
                 <p><strong>Автор:</strong> {{ book.author }}</p>
                 <p><strong>Жанр:</strong> {{ book.subgenre.genre.name }}</p>
                 <p><strong>Поджанр:</strong> {{ book.subgenre.name }}</p>
-                <p><strong>Год издания:</strong> {{ book.pub_year|date:"d E Y" }}</p>
+                <p><strong>Год издания:</strong> {{ book.pub_year }}</p>
                 <p><strong>Издательство:</strong> {{ book.pub_house }}</p>
                 <p><strong>ID книги:</strong> {{ book.id }}</p>
             </div>
@@ -97,4 +97,5 @@
         </div>
     </div>
 </div>
+{% include 'books/includes/comment.html' %}
 {% endblock %}

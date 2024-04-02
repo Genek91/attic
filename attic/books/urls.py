@@ -13,6 +13,11 @@ urlpatterns = [
     path('book/<int:id_book>/', views.book, name='book'),
     path('create-book/', views.create_book, name='create_book'),
     path('update-book/<int:id_book>', views.update_book, name='update_book'),
+    path(
+        'book/<int:id_book>/comment/',
+        views.create_comment,
+        name='create_comment'
+    ),
     path('authors/', views.authors, name='authors'),
     path(
         'author-books-list/<str:author>',

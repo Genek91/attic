@@ -3,8 +3,8 @@ from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
 from django.urls import reverse
 
-from books.forms import BookForm
-from books.models import Book, Genre, SubGenre
+from books.forms import BookForm, CommentForm
+from books.models import Book, Genre, SubGenre, Comment
 from users.views import authorized_only
 
 
@@ -68,11 +68,15 @@ def new_books_list(request):
 
 def book(request, id_book):
     book = get_object_or_404(Book, id=id_book)
+    comments = Comment.objects.filter(book=id_book)
+    form = CommentForm()
     return render(
         request,
         'books/book.html',
         {
-            'book': book
+            'book': book,
+            'comments': comments,
+            'form': form
         }
     )
 
@@ -101,7 +105,7 @@ def update_book(request, id_book):
 
     if request.method == 'POST' and form.is_valid():
         form.save()
-        return redirect(reverse('books:index'))
+        return redirect('books:book', id_book=id_book)
     return render(
         request,
         'books/create_book.html',
@@ -110,6 +114,19 @@ def update_book(request, id_book):
             'is_edit': True,
         }
     )
+
+
+@authorized_only
+def create_comment(request, id_book):
+    book = get_object_or_404(Book, id=id_book)
+    form = CommentForm(request.POST or None)
+
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.author = request.user
+        comment.book = book
+        comment.save()
+    return redirect('books:book', id_book=id_book)
 
 
 def authors(request):
