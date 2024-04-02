@@ -1,6 +1,6 @@
 """Натройка моделей приложения books."""
 from django.contrib.auth import get_user_model
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.db import models
 
 User = get_user_model()
@@ -85,8 +85,8 @@ class Book(models.Model):
         verbose_name='Год издания',
         help_text='Год издания',
         validators=[
-            MaxValueValidator(3000),
-            MinValueValidator(1000)
+            MinLengthValidator(4),
+            MaxLengthValidator(4),
         ],
     )
     image = models.ImageField(
