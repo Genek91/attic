@@ -28,6 +28,11 @@
         <p>
             {{ comment.text }}
         </p>
+        {% if comment.author.username == user.username %}
+        <a class="btn btn-primary" href="{% url 'books:delete_comment' book.id comment.id %}">
+          Удалить
+        </a>
+        {% endif %}
     </div>
   </div>
 {% endfor %}

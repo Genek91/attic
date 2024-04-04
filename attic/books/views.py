@@ -90,7 +90,7 @@ def create_book(request):
     if request.method == 'POST' and form.is_valid():
         post = form.save(commit=False)
         post.save()
-        return redirect(reverse('books:index'))
+        return redirect(reverse('books:new_books_list'))
     return render(request, 'books/create_book.html', {'form': form})
 
 
@@ -126,6 +126,13 @@ def create_comment(request, id_book):
         comment.author = request.user
         comment.book = book
         comment.save()
+    return redirect('books:book', id_book=id_book)
+
+
+@authorized_only
+def delete_comment(request, id_comment, id_book):
+    comment = get_object_or_404(Comment, id=id_comment)
+    comment.delete()
     return redirect('books:book', id_book=id_book)
 
 

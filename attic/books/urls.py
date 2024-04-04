@@ -18,6 +18,11 @@ urlpatterns = [
         views.create_comment,
         name='create_comment'
     ),
+    path(
+        'book/<int:id_book>/comment/<int:id_comment>',
+        views.delete_comment,
+        name='delete_comment'
+    ),
     path('authors/', views.authors, name='authors'),
     path(
         'author-books-list/<str:author>',
